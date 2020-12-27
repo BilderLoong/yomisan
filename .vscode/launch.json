@@ -1,0 +1,16 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Launch yomisan",
+            "type": "firefox",
+            "request": "launch",
+            "reAttach": true,
+            "addonPath": "${workspaceFolder}/add-on-build",
+            "reloadOnChange": {
+                "watch": "${workspaceFolder}/**/*.js",
+                "ignore": "**/node_modules/**"
+            },
+        }
+    ]
+}
