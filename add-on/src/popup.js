@@ -14,6 +14,9 @@ class Popup {
     this.popupRef.addEventListener('mousedown', (e) => {
       e.stopPropagation();
     });
+    this.popupRef.addEventListener('mouseup', (e) => {
+      e.stopPropagation();
+    });
     this.popupRef.id = 'yomisan-root';
     root.appendChild(this.popupRef);
   }

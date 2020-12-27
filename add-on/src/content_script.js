@@ -9,15 +9,16 @@ document.addEventListener('selectstart', selectstart);
 document.addEventListener('mouseup', onMouseup);
 document.addEventListener('mousedown', onMousedown);
 
-const popup = new Popup();
 // let selectedText = '';
 // let timeout = null;
 let selecting = true;
+let popup = null;
 
 function onMouseup(event) {
   //get the selection
   let selection = window.getSelection().toString();
   if (selecting && selection.length > 0) {
+    popup = new Popup();
     selecting = false;
     gotSelection(selection, event);
   }
