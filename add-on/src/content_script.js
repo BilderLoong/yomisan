@@ -1,7 +1,9 @@
-import { Popup } from './popup';
+import Popup from './popup';
 import './style.scss';
-import manifest from './manifest.json';
-import icon from './icons/icon.png';
+import manifest from '../manifest.json';
+import icon from '../icons/icon.png';
+
+console.log(manifest, icon);
 
 document.addEventListener('selectstart', selectstart);
 document.addEventListener('mouseup', onMouseup);
@@ -22,8 +24,10 @@ function onMouseup(event) {
 }
 
 function onMousedown() {
-  console.log('popup remove');
-  popup.remove();
+  if (popup.popupRef) {
+    console.log('popup remove');
+    popup.remove();
+  }
 }
 
 function selectstart() {
@@ -41,7 +45,7 @@ function selectstart() {
 }
 
 function gotSelection(text, event) {
-  console.log(text);
+  // console.log(text);
   let entry = getEntry(text);
   popup.display(entry, event);
 }

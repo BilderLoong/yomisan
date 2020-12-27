@@ -55,4 +55,4 @@ class Popup {
     this.popupRef.remove();
   }
 }
-export { Popup };
+export default Popup;
