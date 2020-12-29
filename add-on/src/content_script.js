@@ -1,6 +1,7 @@
 import Popup from './popup';
 import './style.scss';
 import manifest from '../manifest.json';
+import 'react-devtools';
 import icon from '../icons/icon.png';
 
 console.log(manifest, icon);
@@ -25,7 +26,7 @@ function onMouseup(event) {
 }
 
 function onMousedown() {
-  if (popup.popupRef) {
+  if (popup) {
     console.log('popup remove');
     popup.remove();
   }
@@ -53,5 +54,26 @@ function gotSelection(text, event) {
 
 function getEntry(text) {
   // prototype
-  return { expression: text };
+  const glossary = {
+    definition: {
+      tag: 'tag',
+      english: 'English definition 1',
+    },
+    example: ['example 1', 'example 2'],
+  };
+
+  const entry = {
+    expression: 'expression',
+    sentence: 'the sentence include the expression',
+    dictionaryEntry: {
+      dictionaryName: 'dictionary name',
+      ipa: {
+        us: 'us ipa',
+        uk: 'uk ipa',
+      },
+      glossaries: [glossary],
+    },
+  };
+  
+  return entry;
 }

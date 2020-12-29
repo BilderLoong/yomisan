@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import PopupDiv from './popup_div';
+import ErrorBoundary from './ErrorBoundary';
 
 class Popup {
   constructor() {
@@ -27,7 +28,12 @@ class Popup {
     this.entry = entry;
     this.create();
     this.setPopup(x, y);
-    ReactDOM.render(<PopupDiv entry={this.entry} />, this.popupRef);
+    ReactDOM.render(
+      <ErrorBoundary>
+        <PopupDiv entry={this.entry} />
+      </ErrorBoundary>,
+      this.popupRef
+    );
   }
 
   setPopup(x, y) {

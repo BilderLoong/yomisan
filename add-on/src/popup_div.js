@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Header from './components/Header';
 import Dictionary from './components/Dictionary';
 
 class PopupDiv extends React.Component {
@@ -15,8 +14,7 @@ class PopupDiv extends React.Component {
   render() {
     return (
       <div className="yomisan-popup">
-        <Header expression={this.props.entry.expression} />
-        <Dictionary name="dictionary" />
+        <Dictionary entry={this.props.entry} />
       </div>
     );
   }
