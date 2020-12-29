@@ -74,6 +74,6 @@ function getEntry(text) {
       glossaries: [glossary],
     },
   };
-  
+
   return entry;
 }
