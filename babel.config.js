@@ -1,7 +1,11 @@
 module.exports = {
-  presets: [['@babel/preset-env'], '@babel/preset-react'],
+  presets: [
+    ['@babel/preset-env', { targets: 'last 2 versions' }],
+    '@babel/preset-react',
+  ],
   plugins: [
     ['@babel/plugin-proposal-class-properties', { loose: true }],
+    ['@babel/plugin-proposal-private-methods', { loose: true }],
     ['@babel/transform-runtime'],
   ],
 };

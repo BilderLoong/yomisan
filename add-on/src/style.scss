@@ -1,7 +1,16 @@
 #yomisan-root {
-  background: teal;
+  background: rgb(18, 218, 218);
   position: fixed;
   width: 500px;
   height: 200px;
   overflow: auto;
+}
+
+.yomisan-add-note {
+  background: red;
+  inline-size: 10px;
+  block-size: 10px;
+  .disable {
+    background: blue;
+  }
 }

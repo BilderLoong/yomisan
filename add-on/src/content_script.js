@@ -1,9 +1,8 @@
+import 'react-devtools';
 import Popup from './popup';
 import './style.scss';
 import manifest from '../manifest.json';
-import 'react-devtools';
 import icon from '../icons/icon.png';
-
 console.log(manifest, icon);
 
 document.addEventListener('selectstart', selectstart);
@@ -27,8 +26,8 @@ function onMouseup(event) {
 
 function onMousedown() {
   if (popup) {
-    console.log('popup remove');
     popup.remove();
+    popup = null;
   }
 }
 
