@@ -15,7 +15,8 @@ module.exports = {
     // assetModuleFilename: '[name].[ext]',
   },
   mode: 'development',
-  devtool: false,
+  devtool: 'eval-cheap-module-source-map',
+
   module: {
     rules: [
       {
@@ -68,5 +69,6 @@ module.exports = {
     watchContentBase: true,
     hot: true,
   },
+
   plugins: [new CleanWebpackPlugin()],
 };
