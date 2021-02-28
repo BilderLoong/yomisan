@@ -39,7 +39,7 @@ class Popup {
   setPopup(x, y) {
     const winWidth = window.innerWidth;
     const winHeight = window.innerHeight;
-    const popWidth = 500;
+    const popWidth = 300;
     const popHeight = 200;
 
     // the horizontal position of popup

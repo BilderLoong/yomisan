@@ -32,6 +32,6 @@
   "options_ui": {
     "page": "options/index.html"
   },
-  "web_accessible_resources": [],
+  "web_accessible_resources": ["src/settings/*"],
   "permissions": ["<all_urls>", "storage", "tabs", "activeTab"]
 }

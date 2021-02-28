@@ -2,6 +2,12 @@
     "version": "0.2.0",
     "configurations": [
         {
+            "type": "node",
+            "request": "attach",
+            "name": "Attach",
+            "port": 5858
+        },
+        {
             "name": "Launch yomisan",
             "type": "firefox",
             "request": "launch",
@@ -11,6 +17,17 @@
                 "watch": "${workspaceFolder}/**/*.js",
                 "ignore": "**/node_modules/**"
             },
+            "skipFiles": [
+                "**/node_modules/**",
+                "http?(s):/**",
+                "/webpack:/yomisan/node_modules/**",
+            ],
+            "pathMappings": [
+                {
+                    "url": "webpack://yomisan/add-on",
+                    "path": "${workspaceFolder}/add-on"
+                }
+            ]
         }
     ]
 }

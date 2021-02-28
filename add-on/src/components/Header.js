@@ -9,18 +9,37 @@ class Header extends React.Component {
     ipa: PropTypes.object,
   };
 
-  #ankiconnect = new Ankiconnect();
+  constructor(props) {
+    super(props);
+    this.state = {
+      isConnecting: false,
+    };
+    this.ankiconnect = new Ankiconnect();
+  }
 
-  state = {
-    isConnecting: false,
-  };
+  #onClick() {
+    console.log(this);
+    const note = {
+      deckName: 'collecting::Test',
+      modelName: 'Basic_root',
+      fields: {
+        正面: 'hello from yomichan',
+      },
+      options: {
+        allowDuplicate: true,
+      },
+    };
+    const result = this.ankiconnect.addNote(note);
+    console.log(result);
+  }
 
   async #getConnectingStatus() {
-    const isConnecting = await this.#ankiconnect.isConnecting();
+    const isConnecting = await this.ankiconnect.isConnecting();
     this.setState({ isConnecting });
   }
 
   #getIpaString() {
+    // console.log(`in getIpa: ` + this);
     const ipa = this.props.ipa;
     let ipaString = '';
     for (const i in ipa) {
@@ -29,15 +48,19 @@ class Header extends React.Component {
     return `ipa: ${ipaString}`;
   }
 
-  componentDidMount() {}
+  componentDidMount() {
+    this.#getConnectingStatus();
+  }
 
   render() {
-    this.#getConnectingStatus();
     return (
       <div id="yomisan-header">
         <div className="yomisan-header-expression">{this.props.expression}</div>
         <div className="yomisan-header-ipa">{this.#getIpaString()}</div>
-        <AddNote connecting={this.state.isConnecting} />
+        <AddNote
+          connecting={this.state.isConnecting}
+          onClick={() => this.#onClick()}
+        />
       </div>
     );
   }
