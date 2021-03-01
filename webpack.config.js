@@ -1,7 +1,7 @@
 const path = require('path');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const CopyPlugin = require('copy-webpack-plugin');
-// const HtmlWebpackPlugin = require('html-webpack-plugin');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 const outputPath = path.resolve(__dirname, 'add-on-build/');
 const inputPath = path.resolve(__dirname, 'add-on/');
 console.log(path.resolve(outputPath, 'icons/'));
@@ -9,9 +9,12 @@ console.log(path.resolve(outputPath, 'icons/'));
 module.exports = {
   entry: {
     // 'src/react_devtools': 'react-devtools',
-    'src/content_script': './add-on/src/content_script.js',
-    'src/background_script': './add-on/src/background_script.js',
-    'src/settings/index': './add-on/src/settings/index.js',
+    /* content_script/background_script/settings is the 
+    chunk name for each chunk. Typically every entry point represent
+     one chunk. More detail refer to https://webpack.js.org/glossary/#c */
+    content_script: './add-on/src/content_script.js',
+    background_script: './add-on/src/background_script.js',
+    settings: './add-on/src/settings/index.js',
   },
   output: {
     path: outputPath,
@@ -82,18 +85,22 @@ module.exports = {
       patterns: [
         {
           /*using from: 'add-on/icons/* will get unexpected 
-          folder structure which concern with the tye of fprom
+          folder structure which concern with the tye of from
           detail on 
           https://webpack.js.org/plugins/copy-webpack-plugin/#examples*/
           from: path.resolve(inputPath, 'icons/'),
-          to: path.resolve(outputPath, 'icons/'),
+          to: outputPath,
         },
       ],
     }),
-    // new HtmlWebpackPlugin({
-    //   template: 'add-on/src/settings/template.html',
-    // }),
+    new HtmlWebpackPlugin({
+      //Setting page
+      chunks: ['settings'],
+      template: path.join(inputPath, 'src', 'settings', 'index.html'),
+      filename: path.join('setting.html'),
+    }),
   ],
+
   optimization: {
     splitChunks: {},
   },
