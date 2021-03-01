@@ -1,7 +1,7 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+// import PropTypes from 'prop-types';
 
-class SelectInput {
+class SelectInput extends React.Component {
   static propTypes = {};
 
   render() {

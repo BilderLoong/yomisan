@@ -1,7 +1,7 @@
 browser.browserAction.onClicked.addListener(() => {
   const creatingTab = browser.tabs.create({
     active: true,
-    url: `/src/settings/index_builded.html`,
+    url: `setting.html`,
   });
   creatingTab.then(onCreated, onError);
 });

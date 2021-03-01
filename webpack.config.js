@@ -4,7 +4,7 @@ const CopyPlugin = require('copy-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const outputPath = path.resolve(__dirname, 'add-on-build/');
 const inputPath = path.resolve(__dirname, 'add-on/');
-console.log(path.resolve(outputPath, 'icons/'));
+console.log('outputPath： ' + path.resolve(outputPath));
 
 module.exports = {
   entry: {
@@ -16,15 +16,16 @@ module.exports = {
     background_script: './add-on/src/background_script.js',
     settings: './add-on/src/settings/index.js',
   },
+
   output: {
     path: outputPath,
     publicPath: '/',
-    filename: '[name]_builded.js',
+    filename: '[name].js',
     // assetModuleFilename: '[name].[ext]',
   },
   mode: 'development',
-  // devtool: 'cheap-module-source-map',
-  devtool: 'source-map',
+  devtool: 'cheap-module-source-map',
+  // devtool: 'source-map',
 
   module: {
     rules: [
@@ -73,7 +74,7 @@ module.exports = {
     contentBase: './public',
     open: true,
     port: 3000,
-    //decide the where the bundled file located
+    /*decide the where the bundled file located*/
     publicPath: '/dist/',
     watchContentBase: true,
     hot: true,
@@ -84,10 +85,15 @@ module.exports = {
     new CopyPlugin({
       patterns: [
         {
+          //Copy manifest.json
+          from: path.resolve(inputPath, 'manifest.json'),
+          to: outputPath,
+        },
+        {
+          //Copy icons
           /*using from: 'add-on/icons/* will get unexpected 
           folder structure which concern with the tye of from
-          detail on 
-          https://webpack.js.org/plugins/copy-webpack-plugin/#examples*/
+          detail on https://webpack.js.org/plugins/copy-webpack-plugin/#examples*/
           from: path.resolve(inputPath, 'icons/'),
           to: outputPath,
         },

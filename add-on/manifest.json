@@ -7,13 +7,13 @@
     "64": "../icons/icon.png"
   },
   "background": {
-    "scripts": ["./src/background_script_builded.js"]
+    "scripts": ["background_script.js"]
   },
   "content_scripts": [
     {
       "matches": ["*://*/*"],
       "run_at": "document_start",
-      "js": ["./src/content_script_builded.js"]
+      "js": ["content_script.js"]
     }
   ],
   "browser_action": {
@@ -32,6 +32,6 @@
   "options_ui": {
     "page": "options/index.html"
   },
-  "web_accessible_resources": ["src/settings/*"],
+  "web_accessible_resources": ["**/*"],
   "permissions": ["<all_urls>", "storage", "tabs", "activeTab"]
 }

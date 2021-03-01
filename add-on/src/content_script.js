@@ -1,9 +1,6 @@
 import 'react-devtools';
 import './style.scss';
 import Popup from './popup';
-import manifest from '../manifest.json';
-// import icon from '../icons/icon.png';
-console.log(manifest);
 
 document.addEventListener('selectstart', selectstart);
 document.addEventListener('mouseup', onMouseup);
