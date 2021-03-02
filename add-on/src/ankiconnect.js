@@ -1,4 +1,8 @@
 class AnkiConnect {
+  async getDeckList() {
+    this.isConnecting() ? this.#communicateToAnki('deckNames') : undefined;
+  }
+
   async addNote(note) {
     if (!this.isConnecting()) return;
     return this.#communicateToAnki('addNote', { note });

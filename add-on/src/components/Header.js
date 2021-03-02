@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Ankiconnect from '../ankiconnect';
+import AnkiConnect from '../ankiconnect';
 import AddNote from './AddNote';
 
 class Header extends React.Component {
@@ -14,7 +14,7 @@ class Header extends React.Component {
     this.state = {
       isConnecting: false,
     };
-    this.ankiconnect = new Ankiconnect();
+    this.ankiconnect = new AnkiConnect();
   }
 
   #onClick() {

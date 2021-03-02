@@ -8,13 +8,38 @@ console.log('outputPath： ' + path.resolve(outputPath));
 
 module.exports = {
   entry: {
-    // 'src/react_devtools': 'react-devtools',
-    /* content_script/background_script/settings is the 
+    /* manual:
+    https://webpack.js.org/configuration/entry-context/
+
+   content_script/background_script/settings is the 
     chunk name for each chunk. Typically every entry point represent
      one chunk. More detail refer to https://webpack.js.org/glossary/#c */
-    content_script: './add-on/src/content_script.js',
-    background_script: './add-on/src/background_script.js',
-    settings: './add-on/src/settings/index.js',
+    content_script: {
+      import: [
+        'react-devtools',
+        path.join(inputPath, 'src', 'content_script.js'),
+      ],
+    },
+    background_script: {
+      import: path.join(inputPath, 'src', 'background_script.js'),
+    },
+    settings: {
+      import: [
+        'react-devtools',
+        path.join(inputPath, 'src', 'settings', 'index.js'),
+      ],
+    },
+  },
+
+  optimization: {
+    /*
+    https://webpack.js.org/guides/code-splitting/#entry-dependencies
+    */
+    // runtimeChunk: 'single',
+    // Using the below config will cause content_script.js invalid
+    // splitChunks: {
+    //   chunks: 'all',
+    // },
   },
 
   output: {
@@ -106,8 +131,4 @@ module.exports = {
       filename: path.join('setting.html'),
     }),
   ],
-
-  optimization: {
-    splitChunks: {},
-  },
 };

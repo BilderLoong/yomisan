@@ -6,7 +6,7 @@
     "start": "webpack serve ",
     "build": "webpack --config webpack.config.js",
     "watch": "webpack --watch",
-    "run": "web-ext run --config=web-ext-config.js",
+    "load": "web-ext run --config=web-ext-config.js",
     "debug": "react-devtools"
   },
   "keywords": [],

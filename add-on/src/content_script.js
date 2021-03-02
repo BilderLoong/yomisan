@@ -1,4 +1,3 @@
-import 'react-devtools';
 import './style.scss';
 import Popup from './popup';
 
