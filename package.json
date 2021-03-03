@@ -4,6 +4,7 @@
   "description": "",
   "scripts": {
     "start": "webpack serve ",
+    "push": "git push github master",
     "build": "webpack --config webpack.config.js",
     "watch": "webpack --watch",
     "load": "web-ext run --config=web-ext-config.js",

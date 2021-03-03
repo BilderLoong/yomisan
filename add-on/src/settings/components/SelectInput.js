@@ -1,50 +1,23 @@
 import React from 'react';
-// import PropTypes from 'prop-types';
-import AnkiConnect from '../../ankiconnect';
-import SelectOption from './SelectOption';
+import PropTypes from 'prop-types';
 
 class SelectInput extends React.Component {
   constructor(props) {
     super(props);
-    this.getOptionList();
-    this.getInfo();
   }
 
-  static propTypes = {};
-  state = {};
-  ankiConnect = new AnkiConnect();
-  deckOptionList;
-  modelOptionList;
-
-  async getInfo() {
-    const deckList = await this.ankiConnect.getDeckList();
-    const modelList = await this.ankiConnect.getModelList();
-    this.setState({
-      deckList,
-      modelList,
-    });
-  }
-
-  getOptionList(list) {
-    if (list) {
-      return list.map((e, i) => <SelectOption value={e} key={i} />);
-    } else {
-      return <SelectOption value={`Can't get the deck list`} />;
-    }
-  }
+  static propTypes = {
+    onSelect: PropTypes.func.isRequired,
+    optionsList: PropTypes.array.isRequired,
+    id: PropTypes.string.isRequired,
+    name: PropTypes.string.isRequired,
+  };
 
   render() {
-    this.deckOptionList = this.getOptionList(this.state.deckList);
-    this.modelOptionList = this.getOptionList(this.state.modelList);
     return (
-      <div>
-        <select name="deck" id="deck-select">
-          {this.deckOptionList}
-        </select>
-        <select name="model" id="model-select">
-          {this.modelOptionList}
-        </select>
-      </div>
+      <select name={this.props.name} id={this.props.id}>
+        {this.props.optionsList}
+      </select>
     );
   }
 }
