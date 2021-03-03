@@ -1,8 +1,11 @@
 class AnkiConnect {
+  async getModelList() {
+    if (!this.isConnecting()) return;
+    return this.communicateToAnki('modelNames');
+  }
   async getDeckList() {
     if (!this.isConnecting()) return;
-    const result = await this.communicateToAnki('deckNames');
-    return result;
+    return this.communicateToAnki('deckNames');
   }
 
   async addNote(note) {
