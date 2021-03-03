@@ -17,7 +17,7 @@ class Header extends React.Component {
     this.ankiconnect = new AnkiConnect();
   }
 
-  #onClick() {
+  onclick() {
     console.log(this);
     const note = {
       deckName: 'collecting::Test',
@@ -33,12 +33,12 @@ class Header extends React.Component {
     console.log(result);
   }
 
-  async #getConnectingStatus() {
+  async getConnectingStatus() {
     const isConnecting = await this.ankiconnect.isConnecting();
     this.setState({ isConnecting });
   }
 
-  #getIpaString() {
+  getIpaString() {
     // console.log(`in getIpa: ` + this);
     const ipa = this.props.ipa;
     let ipaString = '';
@@ -49,17 +49,17 @@ class Header extends React.Component {
   }
 
   componentDidMount() {
-    this.#getConnectingStatus();
+    this.getConnectingStatus();
   }
 
   render() {
     return (
       <div id="yomisan-header">
         <div className="yomisan-header-expression">{this.props.expression}</div>
-        <div className="yomisan-header-ipa">{this.#getIpaString()}</div>
+        <div className="yomisan-header-ipa">{this.getIpaString()}</div>
         <AddNote
           connecting={this.state.isConnecting}
-          onClick={() => this.#onClick()}
+          onClick={() => this.onclick()}
         />
       </div>
     );

@@ -1,28 +1,30 @@
 class AnkiConnect {
   async getDeckList() {
-    this.isConnecting() ? this.#communicateToAnki('deckNames') : undefined;
+    if (!this.isConnecting()) return;
+    const result = await this.communicateToAnki('deckNames');
+    return result;
   }
 
   async addNote(note) {
     if (!this.isConnecting()) return;
-    return this.#communicateToAnki('addNote', { note });
+    return this.communicateToAnki('addNote', { note });
   }
 
   async getRemoteVersion() {
     if (!this.isConnecting()) return;
-    return this.#communicateToAnki('version');
+    return this.communicateToAnki('version');
   }
 
   async isConnecting() {
     try {
-      await this.#communicateToAnki('version');
+      await this.communicateToAnki('version');
       return true;
     } catch (e) {
       return false;
     }
   }
 
-  async #communicateToAnki(action, params) {
+  async communicateToAnki(action, params) {
     const response = await fetch('http://127.0.0.1:8765', {
       method: 'POST',
       mode: 'cors',

@@ -5,21 +5,32 @@ import SelectOption from './SelectOption';
 
 class SelectInput extends React.Component {
   static propTypes = {};
+  state = {};
   ankiConnect = new AnkiConnect();
-  state = { deckList: this.ankiConnect.getDeckList() };
+  optionList;
+
+  async getDeck() {
+    const deckList = await this.ankiConnect.getDeckList();
+    this.setState({
+      deckList,
+    });
+  }
+
+  componentDidMount() {
+    this.getDeck();
+  }
 
   render() {
-    let optionList = [];
-    if (this.state.deckList.length > 0) {
-      optionList = this.state.deckList.map((e, i) => (
+    if (this.state.deckList) {
+      this.optionList = this.state.deckList.map((e, i) => (
         <SelectOption value={e} key={i} />
       ));
     } else {
-      optionList = <SelectOption value={`Can't get the deck list`} />;
+      this.optionList = <SelectOption value={`Can't get the deck list`} />;
     }
     return (
       <select name="deck" id="deck-select">
-        {optionList}
+        {this.optionList}
       </select>
     );
   }
