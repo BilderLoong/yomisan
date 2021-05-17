@@ -3,7 +3,8 @@
   "version": "1.0.0",
   "description": "",
   "scripts": {
-    "start": "webpack serve ",
+    "start": "webpack serve --hot ",
+    "dev": "concurrently \"npm:load\" \"npm:watch\" \"npm:debug\"",
     "push": "git push github master",
     "build": "webpack --config webpack.config.js",
     "watch": "webpack --watch",
@@ -26,6 +27,7 @@
     "babel-loader": "^8.2.2",
     "babel-plugin-syntax-dynamic-import": "^6.18.0",
     "clean-webpack-plugin": "^3.0.0",
+    "concurrently": "^6.0.0",
     "copy-webpack-plugin": "^7.0.0",
     "css-loader": "^5.0.1",
     "eslint": "^7.16.0",

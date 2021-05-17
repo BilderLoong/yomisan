@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Dictionary from './components/Dictionary';
+import Dictionary from './Dictionary';
 
 class PopupDiv extends React.Component {
   static propTypes = {

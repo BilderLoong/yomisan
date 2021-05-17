@@ -29,6 +29,7 @@ module.exports = {
         path.join(inputPath, 'src', 'settings', 'index.js'),
       ],
     },
+    devPopup: path.join(inputPath, 'development', 'app.js'),
   },
 
   optimization: {
@@ -44,7 +45,6 @@ module.exports = {
 
   output: {
     path: outputPath,
-    publicPath: '/',
     filename: '[name].js',
     // assetModuleFilename: '[name].[ext]',
   },
@@ -96,13 +96,13 @@ module.exports = {
   },
 
   devServer: {
-    contentBase: './public',
+    // The path to the static files need to be used when server
+    //https://stackoverflow.com/questions/62991326/difference-between-publicpath-and-contentbase-in-webpack
+    // contentBase: ['./add-on/development/'],
     open: true,
     port: 3000,
-    /*decide the where the bundled file located*/
-    publicPath: '/dist/',
     watchContentBase: true,
-    hot: true,
+    // hot: true,
   },
 
   plugins: [
@@ -129,6 +129,11 @@ module.exports = {
       chunks: ['settings'],
       template: path.join(inputPath, 'src', 'settings', 'index.html'),
       filename: path.join('setting.html'),
+    }),
+    new HtmlWebpackPlugin({
+      //Setting page
+      chunks: ['devPopup'],
+      filename: path.join('devPopup.html'),
     }),
   ],
 };

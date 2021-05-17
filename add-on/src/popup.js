@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import PopupDiv from './popup_div';
+import PopupDiv from './components/PopupDiv';
 import ErrorBoundary from './components/ErrorBoundary';
 
 class Popup {
